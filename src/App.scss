@@ -1,0 +1,117 @@
+// Define tus colores primarios inspirados en "TechShop"
+$primary-color-techshop: #5A3FFF; // Un azul-púrpura vibrante como en la imagen
+$primary-color-techshop-light: #E8E5FF; // Para fondos de elementos activos o hover suaves
+$body-bg-techshop: #F8F9FA; // Un fondo gris muy claro para la página
+$card-bg-techshop: #FFFFFF;
+$text-dark-techshop: #212529;
+$text-light-techshop: #6c757d;
+$border-color-techshop: #DEE2E6; // Nueva variable para bordes
+$text-color-primary-techshop: $text-dark-techshop; // Nueva variable para color de texto primario
+
+// Sobrescribir variables de Bootstrap (opcional, requiere configuración más avanzada de SASS con Bootstrap)
+// $primary: $primary-color-techshop;
+// $body-bg: $body-bg-techshop;
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  margin: 0;
+  background-color: $body-bg-techshop; // Usar el nuevo color de fondo
+  color: $text-dark-techshop;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+html, body, #root, .app {
+  height: 100%;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main-content-techshop {
+  flex: 1 0 auto;
+}
+.footer-techshop {
+  flex-shrink: 0;
+}
+.loading, .error {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1rem;
+  color: $text-light-techshop;
+}
+
+// Ajusta los estilos de enlace si Bootstrap no los cubre como deseas
+a {
+  color: $primary-color-techshop;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: darken($primary-color-techshop, 10%);
+    // text-decoration: underline; // Bootstrap maneja esto
+  }
+}
+
+// Los estilos de .page-container y .main-content que añadimos antes son compatibles con Bootstrap
+// y ayudan a estructurar las páginas.
+
+.page-container {
+  display: flex;
+  flex-grow: 1;
+  padding: 20px;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.main-content {
+  flex-grow: 1;
+  background-color: $card-bg-techshop; // Fondo blanco para el área de contenido
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+// Botón primario personalizado para que coincida con el color de TechShop
+.btn-techshop-primary {
+  background-color: $primary-color-techshop !important;
+  border-color: $primary-color-techshop !important;
+  color: #fff !important;
+
+  &:hover, &:focus, &:active {
+    background-color: darken($primary-color-techshop, 8%) !important;
+    border-color: darken($primary-color-techshop, 8%) !important;
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+// Contenedor principal para páginas con sidebar o contenido centrado
+.page-container {
+  display: flex;
+  flex-grow: 1;
+  padding: 20px; // Espacio alrededor del contenido de la página
+  gap: 20px;     // Espacio entre sidebar y contenido principal
+  max-width: 1400px; // Ancho máximo para el contenido de la página
+  margin: 0 auto;    // Centrar el contenedor de la página
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.main-content {
+  flex-grow: 1; // El contenido principal toma el espacio restante
+  background-color: #FFFFFF; // Fondo blanco para el área de contenido
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05); // Sombra sutil
+}
