@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // <-- Importa useNavigate
+import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext'; 
 import './ProductDetail.scss'; 
 
@@ -9,7 +9,7 @@ function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { addToCart } = useCart();
-  const navigate = useNavigate(); // <-- Inicializa el hook
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -37,36 +37,38 @@ function ProductDetail() {
   const stockDisponible = product.rating && product.rating.count > 0 ? product.rating.count : 'No disponible';
 
   const handleAddToCartWithSound = () => {
-    const audio = new Audio('/songs/click.mp3'); // Ruta al archivo de sonido
+    const audio = new Audio('/songs/click.mp3');
     audio.play();
     addToCart(product);
   };
 
   return (
-    <div className="product-detail-page">
-      {/* Botón para volver atrás */}
-      <button 
-          className="back-btn"
-          onClick={() => navigate(-1)}
-      >
-          ← Volver atrás
-      </button>
-      <div className="product-detail-container">
-        <div className="product-detail-image">
-          <img src={product.image} alt={product.title} />
-        </div>
-        <div className="product-detail-info">
-          <h1>{product.title}</h1>
-          <p className="category">Categoría: {product.category}</p>
-          <p className="description">Descripción: {product.description}</p>
-          <p className="price">Precio: ${product.price}</p>
-          <p className="stock">Stock: {stockDisponible}</p> {/* Stock simulado */}
-          <button 
-            className="add-to-cart-btn" 
-            onClick={handleAddToCartWithSound} // Modificado aquí
-          >
-            Añadir al carrito
-          </button>
+    <div className="product-detail-wrapper">
+      <div className="product-detail-page">
+        {/* Botón para volver atrás */}
+        <button 
+            className="back-btn"
+            onClick={() => navigate(-1)}
+        >
+            ← Volver atrás
+        </button>
+        <div className="product-detail-container">
+          <div className="product-detail-image">
+            <img src={product.image} alt={product.title} />
+          </div>
+          <div className="product-detail-info">
+            <h1>{product.title}</h1>
+            <p className="category">Categoría: {product.category}</p>
+            <p className="description">Descripción: {product.description}</p>
+            <p className="price">Precio: ${product.price}</p>
+            <p className="stock">Stock: {stockDisponible}</p>
+            <button 
+              className="add-to-cart-btn" 
+              onClick={handleAddToCartWithSound}
+            >
+              Añadir al carrito
+            </button>
+          </div>
         </div>
       </div>
     </div>

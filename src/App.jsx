@@ -28,15 +28,19 @@ const AppContent = () => {
     <div className="app">
       {!hideNavbar && <Navbar onCartClick={() => setIsCartOpen(true)} cartItemCount={cartItemCount} />}
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/products/category/:categoryKey" element={<Products />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/caja" element={<Caja />} />
-      </Routes>
+      
+      <main className="main-content-wrapper">
+        <Routes>
+          <Route path="/" element={<Products />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/products/category/:categoryKey" element={<Products />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/caja" element={<Caja />} />
+        </Routes>
+      </main>
+      
       {!hideFooter && <Footer />}
     </div>
   );
@@ -50,7 +54,7 @@ function App() {
     // Puedes ajustar el tiempo o reemplazar esto con lógica de carga real.
     const timer = setTimeout(() => {
       setAppLoading(false);
-    }, 3000); // Muestra la página de carga por 3 segundos
+    }, 2000);
 
     return () => clearTimeout(timer); // Limpia el temporizador si el componente se desmonta
   }, []);
@@ -67,4 +71,3 @@ function App() {
 }
 
 export default App;
-// import './App.scss'; // This line will also work <-- ESTA LÍNEA FUE ELIMINADA
