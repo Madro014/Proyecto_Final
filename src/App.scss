@@ -12,29 +12,49 @@ $text-color-primary-techshop: $text-dark-techshop; // Nueva variable para color 
 // $primary: $primary-color-techshop;
 // $body-bg: $body-bg-techshop;
 
-body {
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+html, body {
+  height: 100%;
   margin: 0;
-  background-color: $body-bg-techshop; // Usar el nuevo color de fondo
-  color: $text-dark-techshop;
-  min-height: 100vh;
-  line-height: 1.6;
+  padding: 0;
 }
 
-html, body, #root, .app {
-  height: 100%;
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background-color: $body-bg-techshop;
+  color: $text-dark-techshop;
+  line-height: 1.6;
+  min-height: 100vh;
 }
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-.main-content-techshop {
+
+.main-content-wrapper {
   flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
 }
+
+.product-detail-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .footer-techshop {
   flex-shrink: 0;
+  margin-top: auto;
 }
+
 .loading, .error {
   text-align: center;
   padding: 40px 20px;

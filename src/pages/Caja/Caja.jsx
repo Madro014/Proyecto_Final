@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
 import './Caja.scss';
 
 function Caja() {
   const navigate = useNavigate();
+  const { clearCart } = useCart();
   const [formData, setFormData] = useState({
     nombreCompleto: '',
     email: '',
@@ -30,9 +32,9 @@ function Caja() {
     // Simular procesamiento
     setTimeout(() => {
       alert('¡Pago procesado exitosamente! (Simulación)');
+      clearCart(); // Limpiar el carrito después del pago exitoso
       setIsProcessing(false);
       navigate('/'); // Redirigir a la home o a una página de confirmación
-      // Considera limpiar el carrito aquí si el pago es exitoso
     }, 2000);
   };
 

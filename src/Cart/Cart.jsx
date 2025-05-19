@@ -1,6 +1,7 @@
 import { useCart } from '../context/CartContext';
 import './Cart.scss';
 import { useNavigate } from 'react-router-dom'; // Añadido para la navegación
+import { useEffect, useRef } from 'react';
 
 function Cart({ isOpen, onClose }) {
   const { 
@@ -10,21 +11,40 @@ function Cart({ isOpen, onClose }) {
     cartTotal 
   } = useCart();
   const navigate = useNavigate(); // Hook para la navegación
+  
+  // Referencias para los sonidos precargados
+  const removeSound = useRef(new Audio('/songs/eliminar.mp3'));
+  const checkoutSound = useRef(new Audio('/songs/comprar.mp3'));
+
+  // Precargar los sonidos cuando el componente se monta
+  useEffect(() => {
+    removeSound.current.load();
+    checkoutSound.current.load();
+  }, []);
 
   if (!isOpen) return null;
 
   const handleRemoveFromCartWithSound = (itemId) => {
-    const audio = new Audio('/songs/eliminar.mp3'); // Ruta al archivo de sonido
-    audio.play();
+    removeSound.current.currentTime = 0; // Reiniciar el audio al inicio
+    removeSound.current.play();
     removeFromCart(itemId);
   };
 
   const handleCheckoutWithSound = () => {
-    const audio = new Audio('/songs/comprar.mp3'); // Ruta al archivo de sonido de compra
-    audio.play();
-    navigate('/caja'); // Navegar a la página de caja
-    onClose(); // Cerrar el carrito después de navegar
-    // console.log("Procediendo al pago..."); // Puedes mantener o quitar este log
+    const authToken = localStorage.getItem('authToken');
+    const loggedInUser = localStorage.getItem('loggedInUser');
+
+    if (!authToken || !loggedInUser) {
+      alert('Debes iniciar sesión para realizar una compra');
+      navigate('/login');
+      onClose();
+      return;
+    }
+
+    checkoutSound.current.currentTime = 0; // Reiniciar el audio al inicio
+    checkoutSound.current.play();
+    navigate('/caja');
+    onClose();
   };
 
   return (
@@ -56,7 +76,7 @@ function Cart({ isOpen, onClose }) {
                   </div>
                   <button 
                     className="remove-btn"
-                    onClick={() => handleRemoveFromCartWithSound(item.id)} // Modificado aquí
+                    onClick={() => handleRemoveFromCartWithSound(item.id)} 
                   >
                     Remover
                   </button>
@@ -71,7 +91,7 @@ function Cart({ isOpen, onClose }) {
             <div className="total">Total: ${cartTotal.toFixed(2)}</div>
             <button 
               className="checkout-btn"
-              onClick={handleCheckoutWithSound} // Modificado aquí
+              onClick={handleCheckoutWithSound}
             >
               Pasar por la caja
             </button>

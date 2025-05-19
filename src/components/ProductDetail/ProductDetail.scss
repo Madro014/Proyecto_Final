@@ -6,6 +6,18 @@
   border-radius: 18px;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.13);
   animation: fadeIn 0.7s;
+  
+  @media (max-width: 768px) {
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 14px;
+  }
+  
+  @media (max-width: 576px) {
+    padding: 16px;
+    margin: 16px auto;
+    border-radius: 12px;
+  }
 }
 
 @keyframes fadeIn {
@@ -23,6 +35,10 @@
     gap: 22px;
     align-items: stretch;
   }
+  
+  @media (max-width: 576px) {
+    gap: 16px;
+  }
 }
 
 .product-detail-image {
@@ -34,6 +50,10 @@
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  
+  @media (max-width: 900px) {
+    max-width: 100%;
+  }
 
   img {
     width: 100%;
@@ -47,6 +67,10 @@
     &:hover {
       transform: scale(1.04);
     }
+    
+    @media (max-width: 576px) {
+      max-height: 300px;
+    }
   }
 }
 
@@ -58,6 +82,14 @@
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
   padding: 28px 24px;
+  
+  @media (max-width: 768px) {
+    padding: 22px 20px;
+  }
+  
+  @media (max-width: 576px) {
+    padding: 18px 16px;
+  }
 
   h1 {
     font-size: 2.2rem;
@@ -66,6 +98,15 @@
     font-weight: 700;
     letter-spacing: 1px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+    
+    @media (max-width: 576px) {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
   }
 
   .category {
@@ -74,6 +115,11 @@
     margin-bottom: 15px;
     font-weight: 500;
     font-size: 1.1rem;
+    
+    @media (max-width: 576px) {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
   }
 
   .description {
@@ -84,14 +130,32 @@
     background: #f8f8fa;
     border-radius: 8px;
     padding: 12px 14px;
+    
+    @media (max-width: 768px) {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      padding: 10px 12px;
+    }
+    
+    @media (max-width: 576px) {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      padding: 8px 10px;
+    }
   }
 
   .price {
     font-size: 1.6rem;
     font-weight: bold;
-    color: #28a745;
+    color: #2172b4;
     margin-bottom: 10px;
     letter-spacing: 1px;
+    
+    @media (max-width: 576px) {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
   }
 
   .stock {
@@ -99,10 +163,15 @@
     color: #666;
     margin-bottom: 22px;
     font-weight: 500;
+    
+    @media (max-width: 576px) {
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
   }
 
   .add-to-cart-btn {
-    background: linear-gradient(90deg, #28a745 60%, #00c853 100%);
+    background: linear-gradient(90deg, #5b4be7 60%, #3f33f3 100%);
     color: white;
     border: none;
     padding: 15px 32px;
@@ -110,13 +179,24 @@
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    box-shadow: 0 2px 12px rgba(40,167,69,0.09);
+    box-shadow: 0 2px 12px rgba(40, 3, 100, 0.09);
     transition: background 0.3s, transform 0.15s;
     align-self: flex-start;
 
     &:hover {
-      background: linear-gradient(90deg, #218838 60%, #009624 100%);
+      background: linear-gradient(90deg, #450877 60%, #390096 100%);
       transform: scale(1.04);
+    }
+    
+    @media (max-width: 768px) {
+      padding: 12px 28px;
+      font-size: 1.05rem;
+    }
+    
+    @media (max-width: 576px) {
+      padding: 10px 24px;
+      font-size: 1rem;
+      align-self: stretch; // Botón a ancho completo en móviles
     }
   }
 }
@@ -125,6 +205,11 @@
   text-align: center;
   padding: 20px;
   font-size: 1.2rem;
+  
+  @media (max-width: 576px) {
+    padding: 16px;
+    font-size: 1.1rem;
+  }
 }
 
 .back-btn {
@@ -144,5 +229,11 @@
     background: linear-gradient(90deg, #b3d8fd 60%, #e3f0ff 100%);
     color: #007bff;
     transform: translateY(-2px) scale(1.03);
+  }
+  
+  @media (max-width: 576px) {
+    padding: 8px 18px;
+    font-size: 1rem;
+    margin-bottom: 14px;
   }
 }
