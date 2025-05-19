@@ -4,7 +4,7 @@ import { CartProvider, useCart } from './context/CartContext';
 import Navbar from './components/Navbar/Navbar';
 import Products from './pages/Products/Products';
 import ProductDetail from './components/ProductDetail/ProductDetail';
-import Cart from './Cart/Cart';
+import Cart from './pages/Cart/Cart';
 import './App.scss';
 import Footer from './components/footer/footer';
 import Login from './pages/Auth/Login';
