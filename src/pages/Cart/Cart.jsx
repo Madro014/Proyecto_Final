@@ -1,4 +1,4 @@
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../context/CartContext';
 import './Cart.scss';
 import { useNavigate } from 'react-router-dom'; // Añadido para la navegación
 import { useEffect, useRef } from 'react';
