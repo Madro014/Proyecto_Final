@@ -112,7 +112,7 @@ function Products() {
     
     // Navegar a la URL correspondiente a la categoría seleccionada
     if (newCategory === 'all') {
-      navigate('/products');
+      navigate('/');
     } else {
       navigate(`/products/category/${newCategory}`);
     }

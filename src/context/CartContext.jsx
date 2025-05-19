@@ -49,6 +49,11 @@ export function CartProvider({ children }) {
     0
   );
 
+  // Función para limpiar el carrito
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -56,7 +61,8 @@ export function CartProvider({ children }) {
         addToCart,
         removeFromCart,
         updateQuantity,
-        cartTotal
+        cartTotal,
+        clearCart
       }}
     >
       {children}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'; // Asegúrate de importar us
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { CartProvider, useCart } from './context/CartContext';
 import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home/Home';
 import Products from './pages/Products/Products';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Cart from './Cart/Cart';
@@ -11,7 +10,7 @@ import Footer from './components/footer/footer';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Caja from './pages/Caja/Caja';
-import Carga from './pages/Carga/Carga'; // <-- AÑADIR ESTA LÍNEA
+import Carga from './pages/Carga/Carga'; 
 
 // Componente wrapper para acceder al contexto del carrito
 const AppContent = () => {
@@ -32,7 +31,6 @@ const AppContent = () => {
       <main className="main-content-wrapper">
         <Routes>
           <Route path="/" element={<Products />} />
-          <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/products/category/:categoryKey" element={<Products />} />
           <Route path="/login" element={<Login />} />
