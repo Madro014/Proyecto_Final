@@ -1,0 +1,62 @@
+// Variables de color (puedes ajustarlas para que coincidan exactamente con tu logo)
+$primary-blue: #007bff; // Un azul brillante
+$secondary-blue: #00c6ff; // Un azul más claro, tipo cian
+
+.carga-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-image: url('../../assets/fondo/fonditito.png'); // Ruta a tu imagen de fondo
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden; // Para evitar barras de scroll si el logo es muy grande durante la animación
+}
+
+.carga-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; // Espacio entre el logo y el texto
+}
+
+.carga-logo {
+  width: 150px; // Ajusta el tamaño del logo según necesites
+  height: auto;
+  animation: spin 2s linear infinite; // Animación de giro
+}
+
+.carga-texto {
+  font-size: 1.8rem; // Tamaño del texto
+  font-weight: bold;
+  // Aplicar el degradado de color al texto
+  background: linear-gradient(90deg, $primary-blue, $secondary-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; // Hace el texto transparente para mostrar el fondo degradado
+  color: transparent; // Fallback para navegadores que no soportan -webkit-text-fill-color
+  text-shadow: 0px 0px 10px rgba(0, 123, 255, 0.3); // Sombra sutil para mejorar legibilidad
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+  }
+}
+
+// Definición de la animación de giro
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,69 @@
+.auth-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: url('../../assets/fondo/fonditito.png') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form {
+  background: rgba(255,255,255,0.92);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  max-width: 350px;
+
+  h2 {
+    margin-bottom: 1.5rem;
+    color: #5A3FFF;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  input {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    &:focus {
+      border-color: #5A3FFF;
+    }
+  }
+
+  button {
+    background: linear-gradient(90deg, #5A3FFF 60%, #E8E5FF 100%);
+    color: #fff;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    transition: background 0.2s;
+    &:hover {
+      background: linear-gradient(90deg, #4e32e6 60%, #bdb6f7 100%);
+    }
+  }
+
+  p {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    a {
+      color: #5A3FFF;
+      text-decoration: underline;
+      &:hover {
+        color: #3a27b3;
+      }
+    }
+  }
+}

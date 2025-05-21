@@ -1,0 +1,54 @@
+@import '../../App.scss'; // Descomenta si es necesario y App.scss contiene las variables
+
+.category-sidebar-techshop {
+  background-color: #ffffff; // Fondo blanco
+  padding: 20px 15px;
+  border-radius: 8px;
+
+  min-width: 200px; // Ancho mínimo, ajusta según necesites
+  width: 100%; // O un ancho fijo si prefieres, ej. 240px
+  max-width: 250px; // Ancho máximo
+  height: fit-content; // Para que se ajuste al contenido
+
+  .sidebar-title-techshop {
+    font-size: 1.15rem; // Tamaño del título "Categorías"
+    font-weight: 600;
+    color: #212529; // Color oscuro para el título
+    margin-top: 0;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    
+  }
+
+  .category-list-techshop {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .category-item-techshop {
+      margin-bottom: 4px; // Espacio entre ítems
+
+      .category-link-techshop {
+        display: block;
+        padding: 10px 15px; // Padding para los enlaces
+        text-decoration: none;
+        color: #495057; // Color de texto de los enlaces
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        &:hover {
+          background-color: #f0f0f0; // Fondo suave al pasar el mouse
+          color: $primary-color-techshop; // Color primario de tu tienda
+        }
+        
+        &.active {
+          background-color: $primary-color-techshop-light; 
+          color: $primary-color-techshop; 
+          font-weight: 600; 
+        }
+      }
+    }
+  }
+}

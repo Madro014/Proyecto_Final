@@ -1,0 +1,115 @@
+.welcome-card-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); // Fondo semi-transparente
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // Asegura que esté por encima de otros elementos
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+  padding: 20px;
+  box-sizing: border-box;
+
+  &.hidden { // Clase para ocultar con transición (si se implementa)
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.welcome-card {
+  background-color: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 550px;
+  width: 100%;
+  animation: fadeInScaleUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  color: #333;
+  position: relative; // Necesario para posicionar el botón de cierre absolutamente
+
+  .welcome-card-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 28px; // Tamaño de la 'X'
+    font-weight: bold;
+    color: #888; // Color de la 'X'
+    cursor: pointer;
+    padding: 0;
+    line-height: 1; // Ajusta la altura de línea para mejor alineación vertical
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #333; // Color de la 'X' al pasar el mouse
+    }
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 2.2em;
+    font-weight: 600;
+    color: #2c3e50; // Un color oscuro pero suave
+  }
+
+  p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .spline-container {
+    width: 100%; // Puedes mantenerlo al 100% para que sea responsivo dentro de la tarjeta
+    height: 250px; // Reducimos la altura, por ejemplo a 250px. Ajusta este valor como prefieras.
+    margin: 0 auto 20px;
+    border-radius: 8px;
+    overflow: hidden; 
+    background-color: #f0f0f0; 
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block; 
+    }
+  }
+
+  button { // Estilos para un botón de cierre opcional
+    background-color: #5c67f2; // Un color de acento
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: #4a54e1;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+@keyframes fadeInScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

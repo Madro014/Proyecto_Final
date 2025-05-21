@@ -1,0 +1,239 @@
+.product-detail-page {
+  padding: 24px;
+  max-width: 950px;
+  margin: 32px auto;
+  background: linear-gradient(120deg, #f4f6f8 0%, #e3f0ff 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.13);
+  animation: fadeIn 0.7s;
+  
+  @media (max-width: 768px) {
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 14px;
+  }
+  
+  @media (max-width: 576px) {
+    padding: 16px;
+    margin: 16px auto;
+    border-radius: 12px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.product-detail-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 22px;
+    align-items: stretch;
+  }
+  
+  @media (max-width: 576px) {
+    gap: 16px;
+  }
+}
+
+.product-detail-image {
+  flex: 1;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  
+  @media (max-width: 900px) {
+    max-width: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: transform 0.2s;
+    &:hover {
+      transform: scale(1.04);
+    }
+    
+    @media (max-width: 576px) {
+      max-height: 300px;
+    }
+  }
+}
+
+.product-detail-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 28px 24px;
+  
+  @media (max-width: 768px) {
+    padding: 22px 20px;
+  }
+  
+  @media (max-width: 576px) {
+    padding: 18px 16px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 14px;
+    color: #222;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+    
+    @media (max-width: 576px) {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+  }
+
+  .category {
+    font-style: italic;
+    color: #007bff;
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    
+    @media (max-width: 576px) {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+  }
+
+  .description {
+    font-size: 1.13rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 22px;
+    background: #f8f8fa;
+    border-radius: 8px;
+    padding: 12px 14px;
+    
+    @media (max-width: 768px) {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      padding: 10px 12px;
+    }
+    
+    @media (max-width: 576px) {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      padding: 8px 10px;
+    }
+  }
+
+  .price {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #2172b4;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    
+    @media (max-width: 576px) {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+  }
+
+  .stock {
+    font-size: 1.05rem;
+    color: #666;
+    margin-bottom: 22px;
+    font-weight: 500;
+    
+    @media (max-width: 576px) {
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+  }
+
+  .add-to-cart-btn {
+    background: linear-gradient(90deg, #5b4be7 60%, #3f33f3 100%);
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    font-size: 1.13rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 2px 12px rgba(40, 3, 100, 0.09);
+    transition: background 0.3s, transform 0.15s;
+    align-self: flex-start;
+
+    &:hover {
+      background: linear-gradient(90deg, #450877 60%, #390096 100%);
+      transform: scale(1.04);
+    }
+    
+    @media (max-width: 768px) {
+      padding: 12px 28px;
+      font-size: 1.05rem;
+    }
+    
+    @media (max-width: 576px) {
+      padding: 10px 24px;
+      font-size: 1rem;
+      align-self: stretch; // Botón a ancho completo en móviles
+    }
+  }
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2rem;
+  
+  @media (max-width: 576px) {
+    padding: 16px;
+    font-size: 1.1rem;
+  }
+}
+
+.back-btn {
+  margin-bottom: 18px;
+  background: linear-gradient(90deg, #e3f0ff 60%, #f4f6f8 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: #222;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+
+  &:hover {
+    background: linear-gradient(90deg, #b3d8fd 60%, #e3f0ff 100%);
+    color: #007bff;
+    transform: translateY(-2px) scale(1.03);
+  }
+  
+  @media (max-width: 576px) {
+    padding: 8px 18px;
+    font-size: 1rem;
+    margin-bottom: 14px;
+  }
+}
