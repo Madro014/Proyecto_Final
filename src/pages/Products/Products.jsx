@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import { useCart } from '../../context/CartContext';
 import './Products.scss';
 
-// Categorías para la UI de TechShop (ahora coinciden con las de la API)
+
 const techShopCategories = [
   { key: 'all', name: 'Todos los productos' },
   { key: 'electronics', name: 'Electrónica' },
@@ -22,18 +23,17 @@ function Products() {
   const [searchTerm, setSearchTerm] = useState('');
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const { initializeMultipleProductStock } = useCart();
   
   // Paginación
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 10;
 
-  // El categoryKey 'all' o undefined significa todos los productos.
   const currentCategoryKey = categoryKey || 'all';
 
-  // Establecer la categoría seleccionada cuando cambia la URL
   useEffect(() => {
     setSelectedCategory(currentCategoryKey);
-    setCurrentPage(1); // Resetear a la primera página cuando cambia la categoría
+    setCurrentPage(1);
   }, [currentCategoryKey]);
 
   useEffect(() => {
@@ -50,9 +50,17 @@ function Products() {
         if (!response.ok) throw new Error(`Error fetching products: ${response.statusText}`);
         const data = await response.json();
         
+     
+        const stockObj = {};
+        data.forEach(product => {
+          stockObj[product.id] = Math.floor(Math.random() * 20) + 1;
+        });
+        initializeMultipleProductStock(stockObj);
+        
         setProducts(data);
         setFilteredProducts(data);
       } catch (err) {
+        console.error('Error fetching products:', err);
         setError(err.message);
         setProducts([]);
         setFilteredProducts([]);
@@ -64,27 +72,25 @@ function Products() {
     fetchProducts();
   }, [currentCategoryKey]);
 
-  // Aplicar filtros cuando cambian los productos, términos de búsqueda o rango de precios
+  // Efecto para filtrar productos
   useEffect(() => {
     if (products.length > 0) {
       let result = [...products];
       
-      // Aplicar filtro de búsqueda por nombre
+      // Aplicar filtro de búsqueda
       if (searchTerm) {
         result = result.filter(product => 
           product.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
       }
       
-      // Aplicar filtro de rango de precios
+      // Aplicar filtro de precio
       result = result.filter(product => 
         product.price >= priceRange.min && product.price <= priceRange.max
       );
       
       setFilteredProducts(result);
       setCurrentPage(1); // Resetear a la primera página cuando cambian los filtros
-    } else {
-      setFilteredProducts([]);
     }
   }, [products, searchTerm, priceRange]);
 
@@ -93,7 +99,7 @@ function Products() {
     return currentCat ? currentCat.name : 'Productos';
   };
 
-  // Manejadores para los filtros
+  
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -154,7 +160,7 @@ function Products() {
           <div className="filters-container p-3 bg-white rounded shadow-sm">
             <h4 className="filter-title mb-3">Filtros</h4>
             
-            {/* Filtro por categoría (desplegable) */}
+            {/* Filtro por categoría */}
             <div className="mb-3">
               <label htmlFor="category-select" className="form-label">Categoría:</label>
               <select 
@@ -216,33 +222,36 @@ function Products() {
             </button>
           </div>
         </div>
+        
         <div className="col-lg-9 col-md-8">
           <main className="main-content-techshop p-3 bg-white rounded shadow-sm">
             <h2 className="page-title mb-4">{getPageTitle()}</h2>
             
-            {/* Contadores y resultados */}
-            {!loading && !error && (
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <div className="results-count">
-                  Mostrando <strong>{Math.min(indexOfFirstProduct + 1, filteredProducts.length)}-{Math.min(indexOfLastProduct, filteredProducts.length)}</strong> de <strong>{filteredProducts.length}</strong> productos
+            {loading ? (
+              <div className="text-center p-5">
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Cargando...</span>
                 </div>
-                {searchTerm && (
-                  <div className="search-term">
-                    Resultados para: <span className="badge bg-primary">{searchTerm}</span>
-                  </div>
-                )}
               </div>
-            )}
-            
-            {loading && <div className="text-center p-5"><div className="spinner-border text-primary" role="status"><span className="visually-hidden">Cargando...</span></div></div>}
-            {error && <div className="alert alert-danger">Error: {error}</div>}
-            {!loading && !error && filteredProducts.length === 0 && <p>No hay productos que coincidan con los filtros seleccionados.</p>}
-            
-            {!loading && !error && filteredProducts.length > 0 && (
+            ) : error ? (
+              <div className="alert alert-danger">
+                Error: {error}
+                <button 
+                  className="btn btn-outline-danger ms-3"
+                  onClick={() => window.location.reload()}
+                >
+                  Reintentar
+                </button>
+              </div>
+            ) : filteredProducts.length === 0 ? (
+              <div className="alert alert-info">
+                No hay productos que coincidan con los filtros seleccionados.
+              </div>
+            ) : (
               <>
                 <div className="products-card-grid">
                   {currentProducts.map((product) => (
-                    <ProductCard product={product} key={product.id} />
+                    <ProductCard key={product.id} product={product} />
                   ))}
                 </div>
                 
@@ -261,7 +270,6 @@ function Products() {
                         </button>
                       </li>
                       
-                      {/* Mostrar números de página */}
                       {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
                         <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
                           <button 

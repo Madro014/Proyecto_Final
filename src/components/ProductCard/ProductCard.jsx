@@ -5,12 +5,13 @@ import './ProductCard.scss';
 
 function ProductCard({ product }) {
   const navigate = useNavigate();
-  const { addToCart } = useCart();
+  const { addToCart, getAvailableStock } = useCart();
+  const availableStock = getAvailableStock(product.id);
 
   const handleCardClick = (e) => {
-    // Si el clic fue en el botón de añadir al carrito, NO navegues
+  
     if (e.target.closest('.btn-add-to-cart-techshop')) return;
-    // Si el clic fue en cualquier otra parte, navega al detalle
+   
     navigate(`/product/${product.id}`);
   };
 
@@ -32,15 +33,17 @@ function ProductCard({ product }) {
       </div>
       <div className="card-body d-flex flex-column">
         <h5 className="card-title product-name-techshop" title={product.title}>{product.title}</h5>
-        <p className="card-text product-price-techshop mt-auto mb-2">${product.price.toFixed(2)}</p> 
+        <p className="card-text product-price-techshop mt-auto mb-2">${product.price.toFixed(2)}</p>
+        <p className="card-text product-stock-techshop">Stock disponible: {availableStock}</p>
       </div>
     
       <button 
         className="btn btn-techshop-primary w-100 rounded-bottom btn-add-to-cart-techshop" 
         onClick={handleAddToCart}
         type="button"
+        disabled={availableStock === 0}
       >
-        + Añadir al carrito
+        {availableStock === 0 ? 'Sin stock' : 'Añadir al carrito'}
       </button>
     </div>
   );

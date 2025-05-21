@@ -8,7 +8,7 @@ function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { addToCart } = useCart();
+  const { addToCart, getAvailableStock } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,8 +33,8 @@ function ProductDetail() {
   if (error) return <div className="error">Error: {error}</div>;
   if (!product) return <div className="error">Producto no encontrado.</div>;
 
-  // Simulación de stock
-  const stockDisponible = product.rating && product.rating.count > 0 ? product.rating.count : 'No disponible';
+  // Mostrar el stock real de la app, no el del API
+  const stockDisponible = getAvailableStock(product.id);
 
   const handleAddToCartWithSound = () => {
     const audio = new Audio('/songs/click.mp3');
